@@ -13,6 +13,10 @@ router.post(
   ctrlWrapper(ctrl.register)
 );
 
+router.get('/verify/:verificationCode', ctrlWrapper(ctrl.verifyEmail));
+
+router.post("./verify", validateBody(chemas.emailSchema), ctrlWrapper(ctrl.resendVerifyEmail));
+
 router.post("/login", validateBody(chemas.loginSchema), ctrlWrapper(ctrl.login));
 
 router.get("/current", authenticate, ctrlWrapper(ctrl.getCurrent));
